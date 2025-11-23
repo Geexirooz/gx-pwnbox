@@ -84,6 +84,21 @@ get_peas() {
 	fi
 }
 
+# ---------------- Install Node ----------------
+install_node() {
+	# install NVM if not installed
+	if [ ! -d "$HOME/.nvm" ]; then
+		curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash >/dev/null 2>$ERROR_LOGS
+	fi
+
+	# Load nvm for this shell
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+
+	nvm install "$1" >/dev/null 2>$ERROR_LOGS &&
+		nvm use "$1" >/dev/null 2>$ERROR_LOGS
+}
+
 # ==================================== #
 #       Installation Functions         #
 # ==================================== #
@@ -386,7 +401,20 @@ download_seclists() {
 	fi
 }
 
-# ---------------- Profiles ----------------
+# ==================================== #
+#          Optional Packages           #
+# ==================================== #
+
+install_gemini() {
+	if ! command -v gemini >/dev/null 2>&1; then
+		install_node "v22.16.0"
+		npm install -g @google/gemini-cli >/dev/null 2>$ERROR_LOGS
+	fi
+}
+
+# ==================================== #
+#              Profiles                #
+# ==================================== #
 init_setup() {
 	ensure_sudo
 	update_repos
@@ -410,7 +438,7 @@ attack_setup() {
 	[ ! -d "$SCRIPTS_DIR" ] && mkdir -p "$SCRIPTS_DIR" # Create $TOOLS_DIR as well
 	[ ! -d "$WORDLISTS_DIR" ] && mkdir "$WORDLISTS_DIR"
 	core_setup
-	common_deps="build-essential git pkg-config autoconf libssl-dev zlib1g-dev libbz2-dev libgmp-dev libnss3-dev libkrb5-dev libpcap-dev libsqlite3-dev python3 python3-pip yasm liblzma-dev libzstd-dev ruby-dev gcc-mingw-w64-x86-64 musl-tools clang libclang-dev rustup"
+	common_deps="build-essential git pkg-config autoconf libssl-dev zlib1g-dev libbz2-dev libgmp-dev libnss3-dev libkrb5-dev libpcap-dev libsqlite3-dev python3 python3-pip yasm liblzma-dev libzstd-dev ruby-dev gcc-mingw-w64-x86-64 musl-tools clang libclang-dev rustup libimage-exiftool-perl"
 	network_tools="tcpdump wireshark"
 	advanced_tools="docker.io docker-compose-v2 net-tools golang-go"
 	scanners="nmap"
@@ -437,12 +465,21 @@ attack_setup() {
 	download_seclists
 }
 
+optional_setup() {
+	install_gemini
+}
+
+# ==================================== #
+#                Main                  #
+# ==================================== #
+
 # ---------------- Usage ----------------
 usage() {
 	cat <<EOF
 Usage:
   bash setup.sh core
   bash setup.sh attack
+  bash setup.sh optional
   bash setup.sh help
 EOF
 }
@@ -462,6 +499,9 @@ core)
 	;;
 attack)
 	attack_setup
+	;;
+optional)
+	optional_setup
 	;;
 help | --help | -h)
 	usage
