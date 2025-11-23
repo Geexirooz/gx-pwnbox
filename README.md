@@ -12,13 +12,15 @@ I have not messed up much with the profiles so everyone can stick to their own.
 
 
 ## Setup
-you have two modes for setup:
+you have three modes for the setup:
 1. Core: It only installs very basic packages as well as VIM and Bash profiles
 2. Attack: It goes wild and make your Ubuntu machine an attack station. (Choosing this mode will automatically perform a Core installtaion as well)
+3. Optional: It installs some optional packages such as Gemini-cli
 
 ```
 bash setup.sh core
 bash setup.sh attack
+bash setup.sh optional
 ```
 
 ## Troubleshooting
