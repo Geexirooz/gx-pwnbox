@@ -512,3 +512,5 @@ help | --help | -h)
 	exit 2
 	;;
 esac
+
+echo "[*] The script seems to have finished successfully!"
