@@ -72,7 +72,7 @@ fi
 
 # ----------------- Functions ----------------- #
 # Load ssh keys if not loaded (useful for tmux)
-share-ssh-agent() {
+reload-ssh-agent() {
     local socket
 
     for socket in \
@@ -89,7 +89,6 @@ share-ssh-agent() {
     echo 'No valid SSH agents found' >&2
     return 1
 }
-share-ssh-agent
 
 # ----------------- Better autocomplete ----------------- #
 bind 'set colored-completion-prefix on'    # Prefix shown in colour
