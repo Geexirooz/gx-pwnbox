@@ -439,7 +439,7 @@ attack_setup() {
 	[ ! -d "$WORDLISTS_DIR" ] && mkdir "$WORDLISTS_DIR"
 	core_setup
 	common_deps="build-essential git pkg-config autoconf libssl-dev zlib1g-dev libbz2-dev libgmp-dev libnss3-dev libkrb5-dev libpcap-dev libsqlite3-dev python3 python3-pip yasm liblzma-dev libzstd-dev ruby-dev gcc-mingw-w64-x86-64 musl-tools clang libclang-dev rustup libimage-exiftool-perl"
-	network_tools="tcpdump wireshark"
+	network_tools="tcpdump wireshark tshark"
 	advanced_tools="docker.io docker-compose-v2 net-tools golang-go"
 	scanners="nmap"
 	linux_tools="nfs-common"
