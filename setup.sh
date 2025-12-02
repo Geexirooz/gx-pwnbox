@@ -249,8 +249,8 @@ python_tools() {
 	install_python_tool "https://github.com/CravateRouge/bloodyAD.git" "bloodyAD"
 	# AesKrbKeyGen
 	install_python_tool "https://github.com/Tw1sm/aesKrbKeyGen.git" "aesKrbKeyGen"
-	# SQLmap
-	install_python_tool "https://github.com/sqlmapproject/sqlmap.git" "sqlmap"
+	# SQLmap (This tool does not have requirements.txt file)
+	git_clone_quiet "https://github.com/sqlmapproject/sqlmap.git" "$TOOLS_DIR/sqlmap"
 }
 
 # ---------------- Golang tools ----------------
