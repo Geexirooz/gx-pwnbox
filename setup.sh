@@ -260,6 +260,8 @@ golang_tools() {
 	install_golang_tool github.com/ffuf/ffuf/v2@latest
 	# bettercap
 	install_golang_tool github.com/bettercap/bettercap/v2@latest
+    # kerbrute
+    install_golang_tool github.com/ropnop/kerbrute@latest
 }
 
 # ---------------- Ruby tools ----------------
