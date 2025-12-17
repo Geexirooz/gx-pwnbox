@@ -258,7 +258,7 @@ golang_tools() {
 	echo "[*] Installing Golang-based tools..."
 	# Ffuf
 	install_golang_tool github.com/ffuf/ffuf/v2@latest
-    # bettercap
+	# bettercap
 	install_golang_tool github.com/bettercap/bettercap/v2@latest
 }
 
@@ -442,7 +442,7 @@ attack_setup() {
 	[ ! -d "$SCRIPTS_DIR" ] && mkdir -p "$SCRIPTS_DIR" # Create $TOOLS_DIR as well
 	[ ! -d "$WORDLISTS_DIR" ] && mkdir "$WORDLISTS_DIR"
 	core_setup
-	common_deps="build-essential git pkg-config autoconf libssl-dev zlib1g-dev libbz2-dev libgmp-dev libnss3-dev libkrb5-dev libpcap-dev libsqlite3-dev python3 python3-pip yasm liblzma-dev libzstd-dev ruby-dev gcc-mingw-w64-x86-64 musl-tools clang libclang-dev rustup libimage-exiftool-perl libusb-1.0-0-dev"
+	dependencies="build-essential git pkg-config autoconf libssl-dev zlib1g-dev libbz2-dev libgmp-dev libnss3-dev libkrb5-dev libpcap-dev libsqlite3-dev python3 python3-pip yasm liblzma-dev libzstd-dev ruby-dev gcc-mingw-w64-x86-64 musl-tools clang libclang-dev rustup libimage-exiftool-perl libusb-1.0-0-dev pocl-opencl-icd"
 	network_tools="tcpdump wireshark tshark"
 	advanced_tools="docker.io docker-compose-v2 net-tools golang-go"
 	scanners="nmap hydra"
@@ -451,7 +451,7 @@ attack_setup() {
 	kali_tools="hashid"
 	misc_tools="ntpdate sqlite3"
 	# concatenate the tools
-	pkgs="$common_deps $network_tools $advanced_tools $scanners $kali_tools $windows_tools $linux_tools $misc_tools"
+	pkgs="$dependencies $network_tools $advanced_tools $scanners $kali_tools $windows_tools $linux_tools $misc_tools"
 	install_packages "$pkgs"
 	pipx_tools
 	python_tools
