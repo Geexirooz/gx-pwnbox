@@ -260,8 +260,8 @@ golang_tools() {
 	install_golang_tool github.com/ffuf/ffuf/v2@latest
 	# bettercap
 	install_golang_tool github.com/bettercap/bettercap/v2@latest
-    # kerbrute
-    install_golang_tool github.com/ropnop/kerbrute@latest
+	# kerbrute
+	install_golang_tool github.com/ropnop/kerbrute@latest
 }
 
 # ---------------- Ruby tools ----------------
@@ -471,6 +471,12 @@ attack_setup() {
 	download_seclists
 }
 
+defence_setup() {
+	core_setup
+	install_packages "suricata"
+
+}
+
 optional_setup() {
 	install_gemini
 }
@@ -485,6 +491,7 @@ usage() {
 Usage:
   bash setup.sh core
   bash setup.sh attack
+  bash setup.sh defence
   bash setup.sh optional
   bash setup.sh help
 EOF
@@ -505,6 +512,9 @@ core)
 	;;
 attack)
 	attack_setup
+	;;
+defence)
+	defence_setup
 	;;
 optional)
 	optional_setup
